@@ -1,40 +1,20 @@
 import { useState } from "react";
+import AnimalList from "./components/AnimalList";
+import AnimaFilter from "./components/AnimalFilter";
 
 const Example = () => {
   const animals = ["Dog", "Cat", "Rat"];
-
   const [filterVal, setFilterVal] = useState("");
+  const filterAnimals = animals.filter((animal) => {
+    const isMatch = animal.indexOf(filterVal) !== -1;
+    console.log(animal.indexOf(filterVal));
+    return isMatch;
+  })
 
   return (
     <>
-      <input
-        type="text"
-        value={filterVal}
-        onChange={(e) => setFilterVal(e.target.value)}
-      />
-      <ul>
-        {animals
-          .filter((animal) => {
-            const isMatch = animal.indexOf(filterVal) !== -1;
-            console.log(animal.indexOf(filterVal));
-            return isMatch;
-          })
-          .map((animal) => {
-            // if (animal === "Dog") {
-            //   return <li key={animal}>{animal + "＊"}</li>
-            // }else{
-            //   return <li key={animal}>{animal}</li>
-            // }
-            // 三項演算子
-            // return <li key={animal}>{
-            //   animal === "Dog"
-            //     ? animal + "◉"
-            //     : animal}
-            // </li>
-            return <li key={animal}>{animal}{animal === "Dog" && "△"}
-            </li>
-            })}
-      </ul>
+      <AnimaFilter filterState={[filterVal, setFilterVal]} />
+      <AnimalList animals={filterAnimals} />
     </>
   );
 };
