@@ -13,6 +13,10 @@ const StyledButton = styled.button`
     background: ${({isSelected}) => isSelected ? 'pink' : ''};
 `;
 
+const OrangeButton = styled(StyledButton)`
+    background: ${({isSelected}) => isSelected ? 'yellow' : 'green'};
+`;
+
 const Example = () => {
   const [isSelected, setIsSelected] = useState(false);
 
@@ -21,6 +25,7 @@ const Example = () => {
   return (
     <>
       <StyledButton isSelected={isSelected} onClick={clickHandler}>Button</StyledButton>
+      <OrangeButton isSelected={isSelected} onClick={clickHandler}>Button</OrangeButton>
       <button className={`btn ${isSelected ? "selected" : ""}`} onClick={clickHandler}>
         ボタン
       </button>
