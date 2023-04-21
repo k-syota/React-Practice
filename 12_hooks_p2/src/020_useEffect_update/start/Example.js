@@ -10,6 +10,10 @@ const Example = () => {
     }, 1000);
   }, [])
   
+  useEffect(() => {
+    document.title = "counter:" + time
+  },[time])
+
   return (
     <h3>
       <time>{time}</time>
